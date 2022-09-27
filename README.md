@@ -1,6 +1,6 @@
 # Li-Al-paper
 
-Data used in or calculated from the Li-Al paper
+Data used in or calculated from the Li-Al paper.
 
 __crystal_structures/__ includes POSCAR files of all stable sturctures predicted by this paper;
 
