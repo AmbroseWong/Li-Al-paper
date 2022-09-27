@@ -1,0 +1,14 @@
+version              4
+type                 2 Li Al
+zbl                  2
+cutoff               7 6.5
+n_max                8 8
+l_max                4 2 
+basis_size           10 8
+neuron               60
+batch                1000
+lambda_e             1
+lambda_f             1
+lambda_v             0.1   
+population           50
+generation           1000000
