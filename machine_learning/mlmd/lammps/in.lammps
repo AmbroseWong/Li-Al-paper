@@ -1,4 +1,4 @@
-# bulk water NVT
+# bulk li-al
 
 units           metal
 boundary        p p p
@@ -11,13 +11,12 @@ read_data	alli.in
 mass 		1 6.941
 mass            2 26.981538
 change_box      all triclinic
-#pair_style deepmd graph.pb
 pair_style      nep nep.txt
 pair_coeff      * *
 
+#equilibrium
 velocity        all create 800 875340 dist gaussian
 
-#fix             1 all nvt temp 800 800 0.1
 fix             1 all npt temp 800 800 0.1 tri 1500000 1500000 0.1
 fix             2 all momentum 1 linear 1 1 1
 timestep        0.001
@@ -29,8 +28,9 @@ run             5000
 unfix           1
 unfix           2
 
-#fix             1 all nvt temp 1600 1600 0.1
-fix             1 all npt temp 1600 1600 0.1 tri 1500000 1500000 0.1
+
+#run
+fix             1 all npt temp 1400 1400 0.1 tri 1500000 1500000 0.1
 fix             2 all momentum 1 linear 1 1 1
 timestep        0.001
 thermo_style    custom step pe ke enthalpy temp press vol pxx pyy pzz pxy pxz pyz
@@ -80,13 +80,11 @@ fix             8 all ave/time 100 100 10000 c_rd3[1] c_rd3[2] file alal.rdf mod
 
 #other
 variable        volume equal vol
-#compute         3 all enthalpy/atom
 variable        enthal equal enthalpy
-#variable        energy euqal "${enthal}/13440"
 fix             9 all print 20 "${istep} ${volume} ${enthal}" screen no file other.dat
 
 
 
 
-run             200000
+run             1000000
 write_restart   restart.equ
